@@ -28,7 +28,7 @@ webview调用prompt把webview线程卡住，nw收到webview的prompt，拿到Am�
 
 将prompt的字符串切割成一段一段的小字符串，不断发送给nw
 
-数据格式
+发送：
 
 要发送的数据
 data = 
@@ -41,10 +41,15 @@ data =
 把datajson化成字符串。
 载切割成100个字符大小段dataSeg[n]
 
-
-
 {
 	command: 'APPSERVICE_INVOKE',
-	type: 0, 
-	data: 
+	totalSeg: n,
+	curSeg: 0,
+	data: {
+		callbackID: t,
+		seg: dataSeg[i]
+	}
 }
+
+接收：
+
